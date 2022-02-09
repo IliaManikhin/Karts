@@ -28,7 +28,8 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 private:
-	FVector GetResistance();
+	FVector GetAirResistance();
+	FVector GetRollingResistance();
 
 	void ApplyRotation(float DeltaTime);
 
@@ -42,13 +43,18 @@ private:
 	UPROPERTY(EditAnywhere)
 	float MaxDrivingForce = 10000;
 
+
 	//Rotation of car (degrees/sec)
 	UPROPERTY(EditAnywhere)
 	float MaxDegreesPerSecond = 90;
 
 	//Higher means more drag
 	UPROPERTY(EditAnywhere)
-	float DragCoefficient = 16;
+	float DragCoefficient = 32;
+
+	//Higher means more rolling resistance
+	UPROPERTY(EditAnywhere)
+	float RollingResistanceCoefficient = 0.015;
 
 	void MoveForward(float Value);
 	void MoveRight(float Value);
